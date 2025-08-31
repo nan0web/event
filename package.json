@@ -1,0 +1,65 @@
+{
+	"name": "@nan0web/event",
+	"version": "1.0.0",
+	"description": "Agnostic extendable Event System",
+	"type": "module",
+	"main": "./src/index.js",
+	"module": "./src/index.js",
+	"types": "./types/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./src/index.js",
+			"types": "./types/index.d.ts"
+		},
+		"./oop": {
+			"import": "./src/oop.js",
+			"types": "./types/oop.d.ts"
+		},
+		"./command": {
+			"import": "./src/command.js",
+			"types": "./types/command.d.ts"
+		},
+		"./adapters/dom": {
+			"import": "./src/adapters/dom.js",
+			"types": "./types/adapters/dom.d.ts"
+		},
+		"./adapters/memory": {
+			"import": "./src/adapters/memory.js",
+			"types": "./types/adapters/memory.d.ts"
+		},
+		"./adapters/node": {
+			"import": "./src/adapters/node.js",
+			"types": "./types/adapters/node.d.ts"
+		},
+		"./types": {
+			"import": "./src/types/index.js",
+			"types": "./types/types/index.d.ts"
+		}
+	},
+	"files": [
+		"src/",
+		"types/"
+	],
+	"scripts": {
+		"build": "tsc",
+		"test": "node --test",
+		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js",
+		"precommit": "npm test",
+		"prepush": "npm test",
+		"prepare": "husky"
+	},
+	"keywords": [
+		"nan0web",
+		"event",
+		"emitter",
+		"pubsub",
+		"async",
+		"universal"
+	],
+	"author": "nan0web",
+	"license": "ISC",
+	"devDependencies": {
+		"@nan0web/test": "workspace:*",
+		"husky": "^9.1.7"
+	}
+}
