@@ -22,7 +22,7 @@ export function createMemoryAdapter() {
 		},
 
 		async emit(event, data = {}) {
-			const ctx = EventContext.from({ type: event, data })
+			const ctx = data instanceof EventContext ? data : EventContext.from({ type: event, data })
 			const fns = listeners.get(event) || []
 			for (const fn of fns) {
 				if (ctx.defaultPrevented) break

@@ -40,12 +40,12 @@ declare class EventContext<T> {
     /** @type {boolean} */
     defaultPrevented: boolean;
     /**
+     * Prevents further event propagation
+     */
+    preventDefault(): void;
+    /**
      * Clone context
      * @returns {EventContext}
      */
     clone(): EventContext<any>;
-    /**
-     * Prevents further event propagation
-     */
-    preventDefault(): void;
 }

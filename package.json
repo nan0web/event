@@ -46,7 +46,14 @@
 		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js",
 		"precommit": "npm test",
 		"prepush": "npm test",
-		"prepare": "husky"
+		"prepare": "husky",
+		"clean": "rm -rf .cache/ && rm -rf dist/",
+		"clean:modules": "rm -rf node_modules",
+		"test:docs": "node --test src/README.md.js",
+		"test:release": "node --test \"releases/**/*.test.js\"",
+		"test:coverage:collect": "nan0test coverage",
+		"test:status": "nan0test status",
+		"playground": "node playground/main.js"
 	},
 	"keywords": [
 		"nan0web",

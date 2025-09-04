@@ -44,8 +44,11 @@ class EventContext {
 		this.name = String(name)
 		this.error = error ? error : null
 		this.data = data
-		this.meta = meta
+		this.meta = { ...meta }
 		this.defaultPrevented = Boolean(defaultPrevented)
+
+		// Ensure preventDefault method is bound to this instance
+		this.preventDefault = this.preventDefault.bind(this)
 	}
 
 	/**
@@ -55,11 +58,14 @@ class EventContext {
 	clone() {
 		return new EventContext({
 			type: this.type,
-			data: this.data,
-			defaultPrevented: this.defaultPrevented,
-			meta: { ...this.meta }
+			name: this.name,
+			data: { ...this.data },
+			meta: { ...this.meta },
+			error: this.error,
+			defaultPrevented: this.defaultPrevented
 		})
 	}
+
 	/**
 	 * Prevents further event propagation
 	 */
