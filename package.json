@@ -67,9 +67,10 @@
 		"async",
 		"universal"
 	],
-	"author": "nan0web",
+	"author": "ЯRаСлав (YaRaSLove) <support@yaro.page>",
 	"license": "ISC",
 	"devDependencies": {
+		"@nan0web/release": "workspace:*",
 		"@nan0web/test": "workspace:*",
 		"husky": "^9.1.7"
 	}
