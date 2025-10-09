@@ -14,7 +14,7 @@ declare class EventContext<T> {
      * @param {object} input
      * @param {string} [input.type]
      * @param {string} [input.name]
-     * @param {any} [input.data]
+     * @param {T} [input.data]
      * @param {object} [input.meta]
      * @param {Error | null} [input.error]
      * @param {boolean} [input.defaultPrevented]
@@ -22,7 +22,7 @@ declare class EventContext<T> {
     constructor(input?: {
         type?: string | undefined;
         name?: string | undefined;
-        data?: any;
+        data?: T | undefined;
         meta?: object;
         error?: Error | null | undefined;
         defaultPrevented?: boolean | undefined;
@@ -33,8 +33,8 @@ declare class EventContext<T> {
     name: string;
     /** @type {Error | null} */
     error: Error | null;
-    /** @type {any} */
-    data: any;
+    /** @type {T | undefined} */
+    data: T | undefined;
     /** @type {object} */
     meta: object;
     /** @type {boolean} */

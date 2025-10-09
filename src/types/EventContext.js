@@ -12,7 +12,7 @@ class EventContext {
 	/** @type {Error | null} */
 	error = null
 
-	/** @type {any} */
+	/** @type {T | undefined} */
 	data = undefined
 
 	/** @type {object} */
@@ -25,7 +25,7 @@ class EventContext {
 	 * @param {object} input
 	 * @param {string} [input.type]
 	 * @param {string} [input.name]
-	 * @param {any} [input.data]
+	 * @param {T} [input.data]
 	 * @param {object} [input.meta]
 	 * @param {Error | null} [input.error]
 	 * @param {boolean} [input.defaultPrevented]
@@ -56,14 +56,19 @@ class EventContext {
 	 * @returns {EventContext}
 	 */
 	clone() {
-		return new EventContext({
+		const cloned = new EventContext({
 			type: this.type,
 			name: this.name,
-			data: { ...this.data },
+			data: this.data,
 			meta: { ...this.meta },
 			error: this.error,
 			defaultPrevented: this.defaultPrevented
 		})
+		// Reset the preventDefault method binding to avoid double binding
+		cloned.preventDefault = function() {
+			this.defaultPrevented = true
+		}.bind(cloned)
+		return cloned
 	}
 
 	/**
