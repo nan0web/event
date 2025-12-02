@@ -197,9 +197,10 @@ function testRender() {
 
 		const clone = ctx.clone()
 		clone.data.ping = true
-		console.log(ctx.data) // { text: "ping" }
+		console.info(ctx.data) // { text: "ping" }
 		console.info(clone.data) // { text: "ping", ping: true }
 
+		// Compare only the logged output as expected
 		assert.deepStrictEqual(console.output()[0][1], { text: "ping" })
 		assert.deepStrictEqual(console.output()[1][1], { text: "ping", ping: true })
 	})
@@ -262,10 +263,10 @@ function testRender() {
 		 * git clone https://github.com/nan0web/event.git
 		 * cd event
 		 * npm install
-		 * npm run playground
+		 * npm run play
 		 * ```
 		 */
-		assert.ok(String(pkg.scripts?.playground))
+		assert.ok(String(pkg.scripts?.play))
 		const response = await runSpawn("git", ["remote", "get-url", "origin"])
 		assert.ok(response.code === 0, "git command fails (e.g., not in a git repo)")
 		assert.ok(response.text.trim().endsWith(":nan0web/event.git"))

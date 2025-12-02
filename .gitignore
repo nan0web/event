@@ -1,5 +1,6 @@
-/.datasets/
+/.cache/
 /.coverage/
+/.datasets/
 /node_modules/
 
 # Chat

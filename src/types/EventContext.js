@@ -47,7 +47,7 @@ class EventContext {
 		this.meta = { ...meta }
 		this.defaultPrevented = Boolean(defaultPrevented)
 
-		// Ensure preventDefault method is bound to this instance
+		// Bind preventDefault to this instance
 		this.preventDefault = this.preventDefault.bind(this)
 	}
 
@@ -59,13 +59,13 @@ class EventContext {
 		const cloned = new EventContext({
 			type: this.type,
 			name: this.name,
-			data: this.data,
+			data: JSON.parse(JSON.stringify(this.data)),
 			meta: { ...this.meta },
 			error: this.error,
 			defaultPrevented: this.defaultPrevented
 		})
-		// Reset the preventDefault method binding to avoid double binding
-		cloned.preventDefault = function() {
+		// Ensure preventDefault is bound to the clone, not referencing parent's method
+		cloned.preventDefault = function () {
 			this.defaultPrevented = true
 		}.bind(cloned)
 		return cloned

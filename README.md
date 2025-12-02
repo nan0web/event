@@ -1,8 +1,6 @@
 # @nan0web/event
 
-|Package name|[Status](https://github.com/nan0web/monorepo/blob/main/system.md#написання-сценаріїв)|Documentation|Test coverage|Features|Npm version|
-|---|---|---|---|---|---|
- |[@nan0web/event](https://github.com/nan0web/event/) |🟢 `98.8%` |🧪 [English 🏴󠁧󠁢󠁥󠁮󠁧󠁿](https://github.com/nan0web/event/blob/main/README.md)<br />[Українською 🇺🇦](https://github.com/nan0web/event/blob/main/docs/uk/README.md) |🟢 `94.5%` |✅ d.ts 📜 system.md 🕹️ playground |— |
+<!-- %PACKAGE_STATUS% -->
 
 An agnostic and extendable event system for JavaScript environments.
 Provides clean interfaces for emitting and handling events with context support.
@@ -38,14 +36,11 @@ How to create basic event bus and listen for messages?
 import event from "@nan0web/event"
 const bus = event()
 let messageReceived = false
-
 bus.on("message", (ctx) => {
 	messageReceived = true
 	console.info(`Received: ${ctx.data.text}`)
 })
-
 await bus.emit("message", { text: "Hello world!" })
-
 ```
 ### Prevent Default Behavior
 
@@ -56,16 +51,13 @@ How to prevent default event handling in listener?
 import event from "@nan0web/event"
 const bus = event()
 let callCount = 0
-
 bus.on("stop", (ctx) => {
 	callCount++
 	ctx.preventDefault()
 })
-
 bus.on("stop", () => {
 	callCount++
 })
-
 const result = await bus.emit("stop", {})
 ```
 ### Command Pipeline with Events
@@ -76,20 +68,16 @@ Context is not passing to the next executtion inside the loop.
 How to use command with pipeline events?
 ```js
 import { createCommand } from "@nan0web/event/command"
-
 const countCommand = createCommand("count", async (ctx) => {
 	ctx.meta.totalCount = (ctx.meta.totalCount || 0) + 1
 	console.info(`Progress ${ctx.data.iteration}: ${ctx.meta.totalCount} events processed`)
 })
-
 countCommand.on("before", () => {
 	console.info("Counter started")
 })
-
 for (let i = 0; i < 2; i++) {
 	await countCommand.execute({ iteration: i })
 }
-
 ```
 ### Custom Event Class (OOP Style)
 
@@ -98,22 +86,17 @@ Extend `Event` class to create your own custom event systems.
 How to extend Event class for custom event bus?
 ```js
 import Event from "@nan0web/event/oop"
-
 class TestEvent extends Event {
 	async ping() {
 		return await this.emit('ping', {})
 	}
 }
-
 const instance = new TestEvent()
 let received = false
-
 instance.on('ping', () => {
 	received = true
 })
-
 await instance.ping()
-
 ```
 ### Event Context Manipulation
 
@@ -122,18 +105,16 @@ await instance.ping()
 How to manipulate and clone event contexts?
 ```js
 import { EventContext } from "@nan0web/event"
-
 const ctx = EventContext.from({
 	type: "message",
 	data: { text: "ping" },
 	meta: { id: 1 }
 })
-
 const clone = ctx.clone()
 clone.data.ping = true
-console.log(ctx.data) // { text: "ping" }
+console.info(ctx.data) // { text: "ping" }
 console.info(clone.data) // { text: "ping", ping: true }
-
+// Compare only the logged output as expected
 ```
 ## API
 
@@ -189,7 +170,7 @@ How to run playground script?
 git clone https://github.com/nan0web/event.git
 cd event
 npm install
-npm run playground
+npm run play
 ```
 
 ## Java•Script

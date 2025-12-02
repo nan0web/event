@@ -44,7 +44,7 @@
 	],
 	"scripts": {
 		"build": "tsc",
-		"test": "node --test",
+		"test": "node --test --test-timeout=3333 \"src/**/*.test.js\"",
 		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js",
 		"precommit": "npm test",
 		"prepush": "npm test",
@@ -53,11 +53,12 @@
 		"release": "nan0release publish",
 		"clean": "rm -rf .cache/ && rm -rf dist/",
 		"clean:modules": "rm -rf node_modules",
-		"test:docs": "node --test src/README.md.js",
+		"test:docs": "node --test --test-timeout=3333 src/README.md.js",
 		"test:release": "node --test \"releases/**/*.test.js\"",
 		"test:coverage:collect": "nan0test coverage",
 		"test:status": "nan0test status",
-		"playground": "node playground/main.js"
+		"test:all": "npm run test && npm run test:docs && npm run build",
+		"play": "node play/main.js"
 	},
 	"keywords": [
 		"nan0web",
@@ -70,8 +71,8 @@
 	"author": "ЯRаСлав (YaRaSLove) <support@yaro.page>",
 	"license": "ISC",
 	"devDependencies": {
-		"@nan0web/release": "workspace:*",
-		"@nan0web/test": "workspace:*",
+		"@nan0web/release": "1.0.1",
+		"@nan0web/test": "1.1.1",
 		"husky": "^9.1.7"
 	}
 }

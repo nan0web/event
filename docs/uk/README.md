@@ -187,7 +187,7 @@ console.info(clone.data) // { text: "ping", ping: true }
 git clone https://github.com/nan0web/event.git
 cd event
 npm install
-npm run playground
+npm run play
 ```
 
 ## Java•Script
